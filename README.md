@@ -40,6 +40,8 @@ The login page offers one-click **"Explore as Author / Editor-in-Chief / Reviewe
 
 ## Demo accounts (password for all: `jcea-demo-2026`)
 
+> **Live site (hanji.lampbotics.com/jcea):** all demo accounts are deactivated (`users.active = 0`) and `demo_mode` is `no` since October 2026. They exist only in a fresh local seed. Before re-enabling the editorial system in production, create real accounts — do not reactivate these.
+
 | Email | Role |
 |---|---|
 | admin@jcea.demo | admin (implicitly all roles) |
