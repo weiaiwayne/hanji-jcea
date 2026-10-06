@@ -1,26 +1,280 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  /* JCEA "scholarly modern" palette — ink blue primary, teal secondary,
+     warm amber accent, blue-cast neutrals */
+  --color-primary-50: #f0f5fa;
+  --color-primary-100: #dce8f3;
+  --color-primary-200: #bdd3e7;
+  --color-primary-300: #8fb4d5;
+  --color-primary-400: #5b8fbd;
+  --color-primary-500: #3a72a4;
+  --color-primary-600: #2b5b89;
+  --color-primary-700: #24496e;
+  --color-primary-800: #203d5b;
+  --color-primary-900: #1d344d;
+  --color-primary-950: #122236;
+
+  --color-teal-50: #eefaf7;
+  --color-teal-100: #d3f1ea;
+  --color-teal-200: #a8e2d6;
+  --color-teal-500: #2a9d8f;
+  --color-teal-600: #1f8378;
+  --color-teal-700: #1c6b62;
+  --color-teal-800: #1a554f;
+
+  --color-accent-100: #fcf0dd;
+  --color-accent-200: #f8ddb4;
+  --color-accent-400: #f0b35c;
+  --color-accent-500: #e9973a;
+  --color-accent-600: #d47f22;
+  --color-accent-700: #ad651c;
+
+  /* Blue-cast neutrals replace default grays for cohesion */
+  --color-gray-50: #f7f9fb;
+  --color-gray-100: #eef1f5;
+  --color-gray-200: #dfe5ec;
+  --color-gray-300: #c6cfda;
+  --color-gray-400: #94a1b1;
+  --color-gray-500: #64748b;
+  --color-gray-600: #49586c;
+  --color-gray-700: #384555;
+  --color-gray-800: #242f3d;
+  --color-gray-900: #171f2a;
+
+  --shadow-card: 0 1px 2px rgb(18 34 54 / 0.04), 0 4px 12px -2px rgb(18 34 54 / 0.06);
+  --shadow-card-hover: 0 2px 4px rgb(18 34 54 / 0.05), 0 10px 24px -4px rgb(18 34 54 / 0.10);
+  --shadow-pop: 0 4px 8px rgb(18 34 54 / 0.06), 0 16px 40px -8px rgb(18 34 54 / 0.14);
 }
 
+/* Font tokens reference next/font runtime variables (set on <body>), so they
+   must be inlined into utilities rather than emitted as static :root vars. */
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-serif: var(--font-source-serif), Georgia, "Times New Roman", serif;
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+:root {
+  --background: #fcfdfe;
+  --foreground: #1f2937;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--color-primary-200);
+  color: var(--color-primary-950);
+}
+
+/* Eyebrow label — small caps section marker used across the site */
+.eyebrow {
+  font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-teal-600);
+}
+
+/* Long-form article / CMS prose */
+.prose-jcea {
+  font-family: var(--font-source-serif), Georgia, "Times New Roman", serif;
+  font-size: 1.0625rem;
+  line-height: 1.8;
+  color: #2c3947;
+  max-width: 70ch;
+}
+.prose-jcea h2 {
+  font-family: var(--font-source-serif), Georgia, "Times New Roman", serif;
+  font-weight: 700;
+  font-size: 1.45rem;
+  color: var(--color-primary-900);
+  margin: 2.25rem 0 0.75rem;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+}
+.prose-jcea h3 {
+  font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  font-weight: 650;
+  font-size: 1.05rem;
+  color: var(--color-primary-800);
+  margin: 1.5rem 0 0.5rem;
+}
+.prose-jcea p {
+  margin: 0 0 1.05rem;
+}
+.prose-jcea ul,
+.prose-jcea ol {
+  margin: 0 0 1.05rem;
+  padding-left: 1.5rem;
+}
+.prose-jcea ul {
+  list-style: disc;
+}
+.prose-jcea ol {
+  list-style: decimal;
+}
+.prose-jcea li {
+  margin-bottom: 0.4rem;
+}
+.prose-jcea li::marker {
+  color: var(--color-teal-600);
+}
+.prose-jcea a {
+  color: var(--color-primary-600);
+  text-decoration: underline;
+  text-decoration-color: var(--color-primary-300);
+  text-underline-offset: 3px;
+  transition: color 120ms, text-decoration-color 120ms;
+}
+.prose-jcea a:hover {
+  color: var(--color-teal-700);
+  text-decoration-color: var(--color-teal-500);
+}
+.prose-jcea strong {
+  font-weight: 600;
+  color: #1c2733;
+}
+.prose-jcea blockquote {
+  border-left: 3px solid var(--color-teal-500);
+  padding-left: 1.1rem;
+  color: #4a5768;
+  font-style: italic;
+  margin: 1.25rem 0;
+}
+.prose-jcea table {
+  border-collapse: collapse;
+  margin: 1.25rem 0;
+  font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  font-size: 0.9rem;
+}
+.prose-jcea th,
+.prose-jcea td {
+  border: 1px solid var(--color-gray-200);
+  padding: 0.5rem 0.75rem;
+  text-align: left;
+}
+.prose-jcea th {
+  background: var(--color-primary-50);
+  color: var(--color-primary-900);
+}
+.prose-jcea table {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+}
+.prose-jcea hr {
+  border: 0;
+  border-top: 1px solid var(--color-gray-200);
+  margin: 2.5rem 0 1.25rem;
+}
+.prose-jcea code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.9em;
+  background: var(--color-primary-50);
+  padding: 0.1em 0.35em;
+  border-radius: 3px;
+}
+/* Opening summary paragraph on policy pages */
+.prose-jcea .lead {
+  font-size: 1.15rem;
+  line-height: 1.7;
+  color: #1c2733;
+}
+/* Secondary notes: related-page links, provenance, disclaimers */
+.prose-jcea .muted {
+  font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  font-size: 0.875rem;
+  color: #55637a;
+}
+/* In-page contents box on long policy pages */
+.prose-jcea .toc {
+  font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  font-size: 0.9rem;
+  background: var(--color-primary-50);
+  border-left: 3px solid var(--color-teal-500);
+  border-radius: 0 0.5rem 0.5rem 0;
+  padding: 1rem 1.25rem 0.75rem;
+  margin: 1.75rem 0 2rem;
+}
+.prose-jcea .toc h2 {
+  font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-teal-700);
+  margin: 0 0 0.5rem;
+}
+.prose-jcea .toc ul {
+  list-style: none;
+  padding-left: 0;
+  margin-bottom: 0.25rem;
+}
+.prose-jcea .toc li {
+  margin-bottom: 0.3rem;
+}
+/* Deep-linked policy sections must clear the sticky header */
+.prose-jcea :target {
+  scroll-margin-top: 6rem;
+}
+
+/* Dark hero/footer surface: ink-blue brand gradient with a subtle
+   network-graph motif (SNA nod). Self-contained — the dark gradient is the
+   bottom background layer, so no Tailwind gradient utilities are needed
+   (background-image utilities would be overridden by this class anyway). */
+.hero-network {
+  background-color: var(--color-primary-950);
+  background-image:
+    radial-gradient(circle at 12% 22%, rgb(255 255 255 / 0.06) 1.5px, transparent 2.5px),
+    radial-gradient(circle at 28% 68%, rgb(255 255 255 / 0.05) 1.5px, transparent 2.5px),
+    radial-gradient(circle at 46% 34%, rgb(255 255 255 / 0.06) 1.5px, transparent 2.5px),
+    radial-gradient(circle at 64% 76%, rgb(255 255 255 / 0.05) 1.5px, transparent 2.5px),
+    radial-gradient(circle at 81% 25%, rgb(255 255 255 / 0.06) 1.5px, transparent 2.5px),
+    radial-gradient(circle at 92% 62%, rgb(255 255 255 / 0.05) 1.5px, transparent 2.5px),
+    linear-gradient(135deg, var(--color-primary-950) 0%, var(--color-primary-900) 55%, var(--color-primary-800) 100%);
+  background-size: 340px 280px, 340px 280px, 340px 280px, 340px 280px, 340px 280px, 340px 280px, auto;
+}
+
+/* Focus visibility for accessibility (WCAG 2.1 AA) */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+[contenteditable]:focus-visible {
+  outline: 2px solid var(--color-accent-600);
+  outline-offset: 2px;
+  border-radius: 3px;
+}
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 100;
+  background: var(--color-primary-800);
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border-radius: 0 0 0.5rem 0;
+}
+.skip-link:focus {
+  left: 0;
+}
+
+@media print {
+  header, footer, nav, .no-print {
+    display: none !important;
+  }
 }
