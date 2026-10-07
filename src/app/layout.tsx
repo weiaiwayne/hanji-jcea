@@ -21,7 +21,7 @@ export const metadata: Metadata = {
   },
   description:
     "The Journal of Contemporary Eastern Asia (JCEA) is a peer-reviewed, open-access journal on East and Southeast Asia, convergence and future network studies. eISSN 2383-9449.",
-  robots: { index: false, follow: false },
+  robots: { index: true, follow: true },
   openGraph: {
     siteName: "Journal of Contemporary Eastern Asia",
     type: "website",
