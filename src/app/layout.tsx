@@ -16,14 +16,14 @@ const sourceSerif = Source_Serif_4({
 
 export const metadata: Metadata = {
   title: {
-    default: "Journal of Contemporary Eastern Asia (Test Site)",
-    template: "%s | JCEA (Test Site)",
+    default: "Journal of Contemporary Eastern Asia",
+    template: "%s | JCEA",
   },
   description:
-    "Test environment — not the official JCEA website (see jceasia.org). Demonstration of an editorial system for the open-access journal on East and Southeast Asia. ISSN 2383-9449.",
+    "The Journal of Contemporary Eastern Asia (JCEA) is a peer-reviewed, open-access journal on East and Southeast Asia, convergence and future network studies. eISSN 2383-9449.",
   robots: { index: false, follow: false },
   openGraph: {
-    siteName: "Journal of Contemporary Eastern Asia (Test Site)",
+    siteName: "Journal of Contemporary Eastern Asia",
     type: "website",
   },
 };
@@ -39,22 +39,15 @@ export default function RootLayout({
         </a>
         <div
           role="note"
-          aria-label="Test site notice"
-          className="bg-accent-500 px-4 py-2 text-center text-sm font-medium text-primary-950"
+          aria-label="Site announcement"
+          className="bg-accent-500 px-4 py-1.5 text-center text-xs font-medium text-primary-950 sm:py-2 sm:text-sm"
         >
-          ⚠️ Test environment — this is a technology demonstration and{" "}
-          <strong>not the official website of the Journal of Contemporary Eastern Asia</strong>.
-          Published-article listings mirror the real journal and link to
-          KoreaScience; editorial-workflow data is simulated. The official site is{" "}
-          <a
-            href="https://jceasia.org/"
-            className="underline hover:text-primary-800"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+          <strong>You are viewing a preview of JCEA&rsquo;s new website</strong> at a
+          temporary test address. The journal&rsquo;s official website is{" "}
+          <a href="https://jceasia.org/" className="underline hover:text-primary-800">
             jceasia.org
           </a>
-          .
+          , which still shows the current site; in 2027 jceasia.org will switch to this new design.
         </div>
         {children}
       </body>

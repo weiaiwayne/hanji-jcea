@@ -117,7 +117,7 @@ export default async function ArticlePage({
   // Book reviews and editor's notes are editorially assessed, not peer reviewed —
   // Principle 8 requires the exceptions to be identifiable per article.
   const articleType = article.article_type || "Research Article";
-  const peerReviewed = !/book review|editor.s note/i.test(articleType);
+  const peerReviewed = !/book review|editor.s note|editorial/i.test(articleType);
 
   const jsonLd = {
     "@context": "https://schema.org",

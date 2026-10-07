@@ -121,7 +121,7 @@ export default function PublicHeader({
         <Link href="/" className="group flex items-center gap-3">
           <span
             aria-hidden="true"
-            className="relative flex h-12 w-12 items-center justify-center overflow-hidden rounded-lg bg-gradient-to-br from-primary-800 to-primary-950 font-serif text-xl font-bold text-white shadow-sm ring-1 ring-primary-950/20"
+            className="relative flex h-12 w-12 shrink-0 items-center whitespace-nowrap justify-center overflow-hidden rounded-lg bg-gradient-to-br from-primary-800 to-primary-950 font-serif text-xl font-bold text-white shadow-sm ring-1 ring-primary-950/20"
           >
             東亞
             <span className="absolute inset-x-0 bottom-0 h-1 bg-gradient-to-r from-teal-500 to-accent-500" />
